@@ -117,6 +117,12 @@ function rgbToHex(r, g = 0, b = 0) {
     }
 }
 
+// Convierte el color de rgb a hexagesimal
+function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return rgbToHex(parseInt(rgb[1]), parseInt(rgb[2]), parseInt(rgb[3]));
+}
+
 // Obtener el numero de la semana del año indicado
 Date.prototype.iso8601Week = function () {
     // Create a copy of the current date, we don't want to mutate the original
