@@ -102,7 +102,7 @@ function hexToRgb(hex) {
 // Convertir RGB a Hexagemial
 function rgbToHex(r, g = 0, b = 0) {
     if (!$.isArray(r)) {
-        if (r.indexOf('rgb(') > -1) {
+        if ((r + '').indexOf('rgb(') > -1) {
             var out = /^rgb\((\d+), (\d+), (\d+)\)$/.exec(r);
 
             return out ? '#' +
