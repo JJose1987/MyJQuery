@@ -210,7 +210,7 @@ Date.prototype.addDays = function (days = 0, weekday = null) {
     var out = new Date(y, M, d + days);
 
     if (weekday != null) {
-        var i = [7, 1, 2, 3, 4, 5, 6][out.getDay()];
+        var i = [6, 0, 1, 2, 3, 4, 5][out.getDay()];
         var j = 1;
 
         while (i != weekday) {
