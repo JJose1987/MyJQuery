@@ -33,7 +33,7 @@ String.prototype.capitalize = function() {
 String.prototype.repeat = function(times) {
     var out = this;
 
-    for (var i = 0; i < times; i++) {
+    for (var i = 0; i < (times - 1); i++) {
         out += this;
     }
 
