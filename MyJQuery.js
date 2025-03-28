@@ -320,7 +320,7 @@ function drawPoligon(context, kwargs = {color : '#000000', x : 0, y : 0, size : 
     }
 
     if (typeof kwargs['rotate'] == 'undefined') {
-        kwargs['rotate'] = false;
+        kwargs['rotate'] = 0;
     }
 
     if (context != null) {
@@ -382,7 +382,7 @@ function drawStar(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, 
     }
 
     if (typeof kwargs['rotate'] == 'undefined') {
-        kwargs['rotate'] = false;
+        kwargs['rotate'] = 0;
     }
 
     if (context != null) {
