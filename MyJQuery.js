@@ -293,6 +293,131 @@ function toast(message = '', ms = 0) {
     }, ms);
 }
 
+// Dibujar poligono regular de n lados
+function drawPoligon(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0}) {
+    if (typeof kwargs['color'] == 'undefined') {
+        kwargs['color'] = '#000000';
+    }
+
+    if (typeof kwargs['x'] == 'undefined') {
+        kwargs['x'] = 0;
+    }
+
+    if (typeof kwargs['y'] == 'undefined') {
+        kwargs['y'] = 0;
+    }
+
+    if (typeof kwargs['size'] == 'undefined') {
+        kwargs['size'] = 0;
+    }
+
+    if (typeof kwargs['sides'] == 'undefined') {
+        kwargs['sides'] = 1;
+    }
+
+    if (typeof kwargs['fill'] == 'undefined') {
+        kwargs['fill'] = false;
+    }
+
+    if (typeof kwargs['rotate'] == 'undefined') {
+        kwargs['rotate'] = false;
+    }
+
+    if (context != null) {
+        context.save();
+        context.translate(kwargs['x'], kwargs['y']);
+        context.rotate(kwargs['rotate'] * (Math.PI / 180));
+
+        const angle = (2 * Math.PI) / kwargs['sides'];
+
+        context.beginPath();
+
+        for (let i = 0; i < kwargs['sides']; i++) {
+            const xPos = kwargs['size'] * Math.cos(angle * i);
+            const yPos = kwargs['size'] * Math.sin(angle * i);
+            if (i === 0) {
+                context.moveTo(xPos, yPos);
+            } else {
+                context.lineTo(xPos, yPos);
+            }
+        }
+
+        if (kwargs['fill']) {
+            context.fillStyle = kwargs['color'];
+            context.fill();
+        }
+
+        context.strokeStyle = kwargs['color'];
+        context.closePath();
+        context.stroke();
+        
+        context.restore();
+    }
+}
+
+// Dibujar estrella regular de n lados
+function drawStar(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0}) {
+    if (typeof kwargs['color'] == 'undefined') {
+        kwargs['color'] = '#000000';
+    }
+
+    if (typeof kwargs['x'] == 'undefined') {
+        kwargs['x'] = 0;
+    }
+
+    if (typeof kwargs['y'] == 'undefined') {
+        kwargs['y'] = 0;
+    }
+
+    if (typeof kwargs['size'] == 'undefined') {
+        kwargs['size'] = 0;
+    }
+
+    if (typeof kwargs['sides'] == 'undefined') {
+        kwargs['sides'] = 1;
+    }
+
+    if (typeof kwargs['fill'] == 'undefined') {
+        kwargs['fill'] = false;
+    }
+
+    if (typeof kwargs['rotate'] == 'undefined') {
+        kwargs['rotate'] = false;
+    }
+
+    if (context != null) {
+        context.save();
+        context.translate(kwargs['x'], kwargs['y']);
+        context.rotate(kwargs['rotate'] * (Math.PI / 180));
+
+        const angle = (Math.PI / kwargs['sides']); // Ángulo para los vértices exteriores
+        const radioIn = kwargs['size'] / 2; // Radio para los vértices interiores
+
+        context.beginPath();
+        for (let i = 0; i < kwargs['sides'] * 2; i++) {
+            const radio = i % 2 === 0 ? kwargs['size'] : radioIn; // Alternar entre exterior e interior
+            const xPos = radio * Math.cos(i * angle);
+            const yPos = radio * Math.sin(i * angle); // Invertir Y para el canvas
+            if (i === 0) {
+                context.moveTo(xPos, yPos);
+            } else {
+                context.lineTo(xPos, yPos);
+            }
+        }
+
+        if (kwargs['fill']) {
+            context.fillStyle = kwargs['color'];
+            context.fill();
+        }
+
+        context.strokeStyle = kwargs['color'];
+        context.closePath();
+        context.stroke();
+        
+        context.restore();
+    }
+}
+
 $(document).ready(function(e) {
     main();
 });
