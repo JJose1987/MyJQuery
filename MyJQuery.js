@@ -356,7 +356,7 @@ function drawPoligon(context, kwargs = {color : '#000000', colorLine : '#000000'
         }
 
         context.strokeStyle = kwargs['colorLine'];
-        ctx.lineWidth = kwargs['line'];
+        context.lineWidth = kwargs['line'];
         context.closePath();
         context.stroke();
         
@@ -428,7 +428,7 @@ function drawStar(context, kwargs = {color : '#000000', colorLine : '#000000', x
         }
 
         context.strokeStyle = kwargs['colorLine'];
-        ctx.lineWidth = kwargs['line'];
+        context.lineWidth = kwargs['line'];
         context.closePath();
         context.stroke();
         
