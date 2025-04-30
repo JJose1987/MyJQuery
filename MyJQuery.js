@@ -294,9 +294,13 @@ function toast(message = '', ms = 0) {
 }
 
 // Dibujar poligono regular de n lados
-function drawPoligon(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0}) {
+function drawPoligon(context, kwargs = {color : '#000000', colorLine : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0, line : 0}) {
     if (typeof kwargs['color'] == 'undefined') {
         kwargs['color'] = '#000000';
+    }
+
+    if (typeof kwargs['colorLine'] == 'undefined') {
+        kwargs['colorLine'] = '#000000';
     }
 
     if (typeof kwargs['x'] == 'undefined') {
@@ -321,6 +325,10 @@ function drawPoligon(context, kwargs = {color : '#000000', x : 0, y : 0, size : 
 
     if (typeof kwargs['rotate'] == 'undefined') {
         kwargs['rotate'] = 0;
+    }
+
+    if (typeof kwargs['line'] == 'undefined') {
+        kwargs['line'] = 0;
     }
 
     if (context != null) {
@@ -347,7 +355,8 @@ function drawPoligon(context, kwargs = {color : '#000000', x : 0, y : 0, size : 
             context.fill();
         }
 
-        context.strokeStyle = kwargs['color'];
+        context.strokeStyle = kwargs['colorLine'];
+        ctx.lineWidth = kwargs['line'];
         context.closePath();
         context.stroke();
         
@@ -356,9 +365,13 @@ function drawPoligon(context, kwargs = {color : '#000000', x : 0, y : 0, size : 
 }
 
 // Dibujar estrella regular de n lados
-function drawStar(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0}) {
+function drawStar(context, kwargs = {color : '#000000', colorLine : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0, line : 0}) {
     if (typeof kwargs['color'] == 'undefined') {
         kwargs['color'] = '#000000';
+    }
+
+    if (typeof kwargs['colorLine'] == 'undefined') {
+        kwargs['colorLine'] = '#000000';
     }
 
     if (typeof kwargs['x'] == 'undefined') {
@@ -383,6 +396,10 @@ function drawStar(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, 
 
     if (typeof kwargs['rotate'] == 'undefined') {
         kwargs['rotate'] = 0;
+    }
+
+    if (typeof kwargs['line'] == 'undefined') {
+        kwargs['line'] = 0;
     }
 
     if (context != null) {
@@ -410,7 +427,8 @@ function drawStar(context, kwargs = {color : '#000000', x : 0, y : 0, size : 0, 
             context.fill();
         }
 
-        context.strokeStyle = kwargs['color'];
+        context.strokeStyle = kwargs['colorLine'];
+        ctx.lineWidth = kwargs['line'];
         context.closePath();
         context.stroke();
         
