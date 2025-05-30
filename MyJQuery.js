@@ -295,6 +295,9 @@ function toast(message = '', ms = 0) {
 
 // Dibujar poligono regular de n lados
 function drawPoligon(context, kwargs = {color : '#000000', colorLine : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0, line : 0}) {
+    // Array donde se guarran los vertices
+    var vertex = [];
+
     if (typeof kwargs['color'] == 'undefined') {
         kwargs['color'] = '#000000';
     }
@@ -348,6 +351,7 @@ function drawPoligon(context, kwargs = {color : '#000000', colorLine : '#000000'
             } else {
                 context.lineTo(xPos, yPos);
             }
+            vertex.push([xPos, yPos]);
         }
 
         if (kwargs['fill']) {
@@ -362,10 +366,15 @@ function drawPoligon(context, kwargs = {color : '#000000', colorLine : '#000000'
         
         context.restore();
     }
+
+    return vertex;
 }
 
 // Dibujar estrella regular de n lados
 function drawStar(context, kwargs = {color : '#000000', colorLine : '#000000', x : 0, y : 0, size : 0, sides : 1, fill : true, rotate: 0, line : 0}) {
+    // Array donde se guarran los vertices
+    var vertex = [];
+
     if (typeof kwargs['color'] == 'undefined') {
         kwargs['color'] = '#000000';
     }
@@ -420,6 +429,7 @@ function drawStar(context, kwargs = {color : '#000000', colorLine : '#000000', x
             } else {
                 context.lineTo(xPos, yPos);
             }
+            vertex.push([xPos, yPos]);
         }
 
         if (kwargs['fill']) {
@@ -434,6 +444,29 @@ function drawStar(context, kwargs = {color : '#000000', colorLine : '#000000', x
         
         context.restore();
     }
+
+    return vertex;
+}
+
+// Función para calcular el centroide
+function calculateCentroid(vertex) {
+    let A = 0, Cx = 0, Cy = 0;
+    const n = vertex.length;
+
+    for (let i = 0; i < n; i++) {
+        const [x0, y0] = vertex[i];
+        const [x1, y1] = vertex[(i + 1) % n];
+        const cross = x0 * y1 - x1 * y0;
+        A += cross;
+        Cx += (x0 + x1) * cross;
+        Cy += (y0 + y1) * cross;
+    }
+
+    A *= 0.5;
+    Cx /= (6 * A);
+    Cy /= (6 * A);
+
+    return { x: Cx, y: Cy };
 }
 
 $(document).ready(function(e) {
